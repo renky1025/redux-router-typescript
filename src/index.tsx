@@ -4,11 +4,12 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { Switch, Router, Route } from 'react-router';
-import { createStore} from 'redux';
-// import { createStore, applyMiddleware, combineReducers } from 'redux';
-// import { routerReducer, routerMiddleware } from 'react-router-redux';
-import { enthusiasm } from './reducers';
-// import thunk from 'redux-thunk';
+// import { createStore} from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { routerReducer, routerMiddleware } from 'react-router-redux';
+import { enthusiasm  } from './reducers/helloreducer';
+import { numbers  } from './reducers/appreducer';
+import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory'
 
 import Hello from './containers/Hello';
@@ -16,21 +17,21 @@ import App from './containers/App';
 import NotFoundPage from './containers/not-found/index';
 
 const history = createHistory();    
-// const middleware = routerMiddleware(history);
+const middleware = routerMiddleware(history);
 
-const store = createStore(enthusiasm, {
-  enthusiasmLevel: 1,
-  languageName: 'TypeScript',
-});
+// const store = createStore(enthusiasm, {
+//   enthusiasmLevel: 1,
+//   languageName: 'TypeScript',
+// });
+const store = createStore(
+  combineReducers({
+    enthusiasm,
+    numbers,
+    router: routerReducer
+  }),
 
-// const store = createStore(
-//   combineReducers({
-//     ...enthusiasm,
-//     router: routerReducer
-//   }),
-
-//   applyMiddleware(thunk.withExtraArgument(middleware)),
-// );
+  applyMiddleware(thunk.withExtraArgument(middleware)),
+);
 const routes = [{
   path: '/',
   component: Hello,

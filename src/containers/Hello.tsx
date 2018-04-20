@@ -1,12 +1,12 @@
 import Hello from '../components/Hello';
-import * as actions from '../actions/';
-import { StoreState } from '../store/index';
+import * as actions from '../actions/helloaction';
+// import { StoreState } from '../store/index';
 import { connect, Dispatch } from 'react-redux';
 
-export function mapStateToProps({ enthusiasmLevel, languageName }: StoreState) {
+export function mapStateToProps(state:any) {
   return {
-    enthusiasmLevel,
-    name: languageName,
+    enthusiasmLevel: state.enthusiasm.enthusiasmLevel||1,
+    name: state.enthusiasm.languageName|| "world" ,
   }
 }
 
