@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {match} from 'react-router-dom';
+import { DatePicker } from 'antd';
+import 'antd/dist/antd.css';
 import './App.css';
 
 import logo from './logo.svg';
@@ -34,6 +36,10 @@ function App(params:EntitiesPageProps ) {
         <button onClick={params.onIncrement}>+</button>
       </div>
   
+      <div>
+      <DatePicker />
+      </div>
+
     </div>
   );
 }
