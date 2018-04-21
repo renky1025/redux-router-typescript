@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {match} from 'react-router-dom';
-import { DatePicker } from 'antd';
-import 'antd/dist/antd.css';
+import { DatePicker, Button } from 'antd';
+
 import './App.css';
 
 import logo from './logo.svg';
@@ -12,6 +12,9 @@ export interface EntitiesPageProps extends  React.Props<any> {
   match?:match<any>;
   onIncrement?: () => void;
   onDecrement?: () => void;
+}
+const onButtonClicked = (msg:string, event:any):void => {
+  console.log(msg);
 }
 
 function App(params:EntitiesPageProps ) {
@@ -38,6 +41,7 @@ function App(params:EntitiesPageProps ) {
   
       <div>
       <DatePicker />
+      <Button type="primary" onClick={onButtonClicked.bind(event,"hello clicked")}>Hello button</Button> 
       </div>
 
     </div>
